@@ -17,7 +17,7 @@ from main import max_window_sum  # noqa: E402
     [
         ([1, 2, 3, 4, 5], 2, 9),          # 4+5
         ([5, -1, 3, 2, 4], 3, 9),         # 5-1+3=7, -1+3+2=4, 3+2+4=9
-        ([10, 2, -5, 4, 3], 2, 7),        # 4+3=7
+        ([10, 2, -5, 4, 3], 2, 12),       # 10+2=12
         ([0, 0, 0], 1, 0),
     ],
 )
@@ -32,8 +32,8 @@ def test_full_length_window():
 
 def test_negative_numbers_only():
     readings = [-5, -2, -8, -1]
-    # best window of size 2 is -3 (-2 + -1)
-    assert max_window_sum(readings, 2) == -3
+    # best window of size 2 is -7 (-5 + -2)
+    assert max_window_sum(readings, 2) == -7
 
 
 @pytest.mark.parametrize("k", [0, -1, -5])

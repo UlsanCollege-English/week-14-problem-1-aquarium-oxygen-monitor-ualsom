@@ -1,6 +1,3 @@
-
-## main.py
-```python
 """
 HW01 — Aquarium Oxygen Monitor (Sliding Window)
 
@@ -20,16 +17,25 @@ def max_window_sum(readings, k):
     :return: maximum sum over all windows of size k (int)
     :raises ValueError: if k <= 0, k > len(readings), or readings is empty
     """
-    # TODO (8 Steps of Coding):
-    # 1. Re-read the problem and examples.
-    # 2. Re-phrase the task in your own words (in comments or on paper).
-    # 3. Identify inputs, outputs, and any helper variables you will need.
-    # 4. Break down the logic for initializing the first window and sliding it.
-    # 5. Write pseudocode to guide your implementation.
-    # 6. Translate your pseudocode into Python here.
-    # 7. Test and debug with small examples, including negatives and edge cases.
-    # 8. Check that your solution is O(N) time and O(1) extra space.
-    raise NotImplementedError("Implement max_window_sum in main.py")
+    # ---- Input Validation ----
+    if not readings:
+        raise ValueError("readings cannot be empty")
+    if k <= 0:
+        raise ValueError("k must be positive")
+    if k > len(readings):
+        raise ValueError("k cannot be larger than number of readings")
+
+    # ---- Compute initial window sum ----
+    window_sum = sum(readings[:k])
+    max_sum = window_sum
+
+    # ---- Slide the window across the array ----
+    for i in range(k, len(readings)):
+        window_sum += readings[i]          # add the new element
+        window_sum -= readings[i - k]      # remove the old element
+        max_sum = max(max_sum, window_sum)
+
+    return max_sum
 
 
 if __name__ == "__main__":
